@@ -62,7 +62,7 @@ q_z = A.initial_q(3)*unit;
     v_r = w_z;
 
     sig = sqrt(e_t^2*v_t^2 + e_o^2*v_o^2 + e_r^2*v_r^2);
-    p_n = (m*g*h+F_elect*h);
+    p_n = rand*(m*g*h+F_elect*h);
     if sig == 0
         p_t = 0;
         p_o = 0;
@@ -109,7 +109,7 @@ q_z = A.initial_q(3)*unit;
         A.l(1:15,1) = -infty;
         A.l(16:28,1) = 0;
         A.u(1:28,1) = infty;
-        La =[0;0;0;0;0;0;0;0;0;1;0]; %% assuming planar contact
+        La =[0;0;0;0;0;0;0;0;1;0;0]; %% assuming planar contact
         A.fun = 'mcp_funjac_single_convex_contact_patch_microrobot_spiked_end';
         A.check = @mcp_funjac_single_convex_contact_patch_microrobot_spiked_end;
     end

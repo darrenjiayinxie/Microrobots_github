@@ -183,7 +183,7 @@ if (status ~= 1)
     f=0;
     J=0;
     mu= 0;
-  status,
+  %status;
   %error('Path fails to solve problem');
 end
 

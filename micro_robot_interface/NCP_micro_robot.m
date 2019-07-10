@@ -3,6 +3,8 @@ unit = A.unit;
 unit_mass = A.unit_mass;
 N = A.N;
 index = A.n_i;
+
+tol = 1e-14;
 global e_t e_o e_r mu mu1 mu2;
 
 e_t = A.ellipsoid(1);
@@ -152,52 +154,65 @@ for i=1:N
     
     time = h*i;
     tic;
-    [A.z(:,i,index),f,J,Mu,status] = pathmcp(Z,l,u,fun);
+    [A.z(:,i,index),~,~,~,status] = pathmcp(Z,l,u,fun);
     time_NCP = toc;
+    
+     %% first solve for the solution
     if status == 1 
         A.time_NCP(i) = time_NCP;
     else
         A.time_NCP(i) = 0;
     end
     j = 1;
+
+
     if i == 1
         while status == 0
         j = j+1;
         Z_new = change_initial_guess(A,Z,Q);
         tic
-        [A.z(:,i,index),f,J,Mu,status] = pathmcp(Z_new,l,u,fun);
+        [A.z(:,i,index),~,~,~,status] = pathmcp(Z_new,l,u,fun);
         time_NCP = toc;
         if status == 1 
             A.time_NCP(i) = time_NCP;
         else
             A.time_NCP(i) = 0;
         end
-            if j>=30
+            if j>=60
                 error('Path can not found the solution, change your initial guess');
             end
         end
-        
+
     else
         while status == 0
             j = j+1;
             Z_new = change_guess(A,Z,Q);
             tic
-            [A.z(:,i,index),f,J,Mu,status] = pathmcp(Z_new,l,u,fun);
+            [A.z(:,i,index),~,~,~,status] = pathmcp(Z_new,l,u,fun);
             time_NCP = toc;
             if status == 1 
                 A.time_NCP(i) = time_NCP;
             else
                 A.time_NCP(i) = 0;
             end
-            if j>=30
+            if j>=60
                 error('Path can not found the solution, change your initial guess');
             end
         end
     end
+    
+%     %% second check whether the constraints is satisfied or not
+%     F_evaluation = A.check(A.z(:,i,index),0);
+%     F_evaluation = F_evaluation(l==0);
+%     while numel(F_evaluation(F_evaluation < tol))>0
+%         status =0;
+%         resolve(A,Z,Q,status,time_NCP,i);
+%         F_evaluation = A.check(A.z(:,i,index),0);
+%         F_evaluation = F_evaluation(l==0);
+%     end
     %% determine the adhensive force coarsively
    
-    Van = adhensive_force(A,i,index);
-    A.VAN(i) = Van/(A.unit*A.unit_mass*A.h);
+    
    [Q,Nu] = kinematic_map(q_old,A.z(:,i,index),h); % the function which returns the state vectors
    
    Z = A.z(:,i,index); % updating the initial guess for each iteration
@@ -206,7 +221,8 @@ for i=1:N
    A.F_evaluation(:,i) = A.check(Z,0);
    q_old = Q; % updating the beginning value for next time step
    nu_old = Nu; 
-   i
+   %Van = adhensive_force(A,i,index);
+   %A.VAN(i) = Van/(A.unit*A.unit_mass*A.h);
    
 end
 

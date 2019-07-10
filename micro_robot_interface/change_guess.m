@@ -46,21 +46,6 @@ a12_x = a11_x;
 a12_y = a11_y;
 a12_z = Z(12);
 
-% ECP2
-R = rand-0.5;
-if H > (100e-6)*unit
-    a21_x = Z(13)+W/2*R;
-else
-    a21_x = Z(13)*R;
-end
-
-R = rand;
-a21_y = Z(14)+L/2*R;
-a21_z = Z(15);
-
-a22_x = a21_x;
-a22_y = a21_y;
-a22_z = Z(18);
 
 
 
@@ -130,7 +115,7 @@ a22_z = Z(18);
     elseif  A.shape == 'spiked_shape'
         Z_new(26) = p1_n+m*g*h*(2*R);
     elseif  A.shape == 'spiked_ended'
-        Z_new(28) = p1_n+m*g*h*(2*R);
+        Z_new(28) = p1_n;
     elseif A.shape == 'geckod_shape'
         Z_new(24) = p1_n;
     elseif A.shape == 'curved_shape'
