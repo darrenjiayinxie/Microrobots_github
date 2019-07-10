@@ -9,7 +9,7 @@ function [output] = simulate_micro_robot(len2,wid2,incline_angle)
 % cd('micro_robot_interface')
 % A = struct();
 
-%% approximate dimension of the object 
+%%  dimensions of the robot and compute moment of inertia 
 A.shape ='spiked_ended';
 if A.shape == 'cuboid_shape'
     A.dim=[800e-6 400e-6 100e-6]; %(m) length width height
