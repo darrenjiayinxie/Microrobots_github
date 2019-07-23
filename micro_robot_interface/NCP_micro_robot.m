@@ -4,7 +4,6 @@ unit_mass = A.unit_mass;
 N = A.N;
 index = A.n_i;
 
-tol = 1e-14;
 global e_t e_o e_r mu mu1 mu2;
 
 e_t = A.ellipsoid(1);
@@ -62,12 +61,12 @@ elseif A.shape == 'spiked_shape'
     m1 = A.density*A.dim(1)*A.dim(4)*A.dim(5)*unit_mass;
     m_tri = 0.5*A.density*tri_b*tri_h*A.dim(5)*unit_mass;
     I_xx_tri = unit^2*unit_mass*A.density*A.dim(5)*(tri_b^3*tri_h-tri_b^2*tri_h*tri_a+tri_b*tri_h*tri_a^2+tri_b*tri_h^3)/36;
-%     I_xx = (m1/12)*(len1^2+wid1^2) + (I_xx_tri + m_tri*d_a^2)*2;
-%     I_yy = (m/12)*(heg^2+wid1^2);
-%     I_zz = (m/12)*(heg^2+len1^2);
-      I_xx = 3.7592e-06;
-      I_yy = 9.8317e-07;
-      I_zz = 4.6267e-06;
+    I_xx = (m1/12)*(len1^2+wid1^2) + (I_xx_tri + m_tri*d_a^2)*2;
+    I_yy = (m/12)*(heg^2+wid1^2);
+    I_zz = (m/12)*(heg^2+len1^2);
+%       I_xx = 3.7592e-06;
+%       I_yy = 9.8317e-07;
+%       I_zz = 4.6267e-06;
 elseif A.shape == 'spiked_ended'
     len1 = A.dim(1)*unit;
     len2 = A.dim(2)*unit;
@@ -84,24 +83,24 @@ elseif A.shape == 'spiked_ended'
     m_tri = 0.5*A.density*tri_b*tri_h*A.dim(5)*unit_mass;
     I_xx_tri = unit^2*unit_mass*A.density*A.dim(5)*(tri_b^3*tri_h-tri_b^2*tri_h*tri_a+tri_b*tri_h*tri_a^2+tri_b*tri_h^3)/36;
     
-%     I_xx = (m1/12)*(len1^2+wid1^2) + (I_xx_tri + m_tri*d_a^2)*4;
-%     I_yy = (m/12)*(heg^2+wid1^2);
-%     I_zz = (m/12)*(wid1^2+len1^2);
-      I_xx = 3.7592e-06;
-      I_yy = 9.8317e-07;
-      I_zz = 4.6267e-06;
+    I_xx = (m1/12)*(len1^2+wid1^2) + (I_xx_tri + m_tri*d_a^2)*4;
+    I_yy = (m/12)*(heg^2+wid1^2);
+    I_zz = (m/12)*(wid1^2+len1^2);
+%       I_xx = 3.7592e-06;
+%       I_yy = 9.8317e-07;
+%       I_zz = 4.6267e-06;
 elseif A.shape == 'curved_shape'
     alpha = A.dim(4);
     r_1 = A.dim(1)*unit;
     r_2 = A.dim(2)*unit;
     wid = A.dim(3)*unit;
     D = ((r_1^3-r_2^3)/(r_1^2-r_2^2))*(2*sin(alpha)/(3*alpha));
-%     I_xx = 0.5*m*(r_1^2+r_2^2)-m*D^2;
-%     I_yy = I_xx;
-%     I_zz = I_xx;
-      I_xx = 3.7592e-06;
-      I_yy = 9.8317e-07;
-      I_zz = 4.6267e-06;
+    I_xx = 0.5*m*(r_1^2+r_2^2)-m*D^2;
+    I_yy = I_xx;
+    I_zz = I_xx;
+%       I_xx = 3.7592e-06;
+%       I_yy = 9.8317e-07;
+%       I_zz = 4.6267e-06;
 end
 
 phi = A.phi;
@@ -210,7 +209,7 @@ for i=1:N
 %         F_evaluation = A.check(A.z(:,i,index),0);
 %         F_evaluation = F_evaluation(l==0);
 %     end
-    %% determine the adhensive force coarsively
+   
    
     
    [Q,Nu] = kinematic_map(q_old,A.z(:,i,index),h); % the function which returns the state vectors
@@ -221,6 +220,7 @@ for i=1:N
    A.F_evaluation(:,i) = A.check(Z,0);
    q_old = Q; % updating the beginning value for next time step
    nu_old = Nu; 
+   %% determine the adhensive force coarsively
    %Van = adhensive_force(A,i,index);
    %A.VAN(i) = Van/(A.unit*A.unit_mass*A.h);
    

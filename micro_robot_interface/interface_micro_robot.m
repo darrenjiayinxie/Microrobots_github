@@ -3,7 +3,7 @@ clear all
 cd('..');
 addpath('micro_robot_interface');
 addpath('visualize');
-addpath('data');
+
 
 addpath('funjac/single_convex_contact_patches');
 addpath('pathmexmaci64');
@@ -128,5 +128,4 @@ A = planner(A);
 
 A.n_i = 1;
 A = NCP_micro_robot(A);
-%v = compute_velocity(A);
 movie_microrobot(A);

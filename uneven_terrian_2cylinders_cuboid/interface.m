@@ -2,25 +2,25 @@
 clear all;
 close all;
 clc
-cd('..');
-addpath('uneven_terrian_2cylinders_cuboid');
+
 
 addpath('data');
+addpath('visualize');
 cd('..');
 addpath('funjac/single_convex_contact_patches');
 addpath('pathmexmaci64');
 
-cd('micro_robot/uneven_terrian_2cylinders_cuboid')
-addpath('visualize');
+cd('uneven_terrian_2cylinders_cuboid')
+
 A = struct();
 
 % approximate dimension of the object 
 A.shape ='cuboid_shape';
 A.cylinder =1;
-    A.dim=[800e-6 400e-6 100e-6]; %(m) length width height
-    A.density = 2.1688e3; %kg/m^3
-    A.mass = 1.6071e-7; %(kg)
-    A.V_m = 2.9e-11; % m^3d
+A.dim=[800e-6 400e-6 100e-6]; %(m) length width height
+A.density = 2.1688e3; %kg/m^3
+A.mass = 1.6071e-7; %(kg)
+A.V_m = 2.9e-11; % m^3d
 
 
 A.gravity = 9.8; %(m/s^2)
@@ -109,4 +109,4 @@ end
     
 
 %v = compute_velocity(A);
-movie_microrobot(A);
+movie_microrobot_uneven_terrain(A);
