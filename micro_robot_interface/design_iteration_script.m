@@ -2,9 +2,9 @@ clear all
 cd('..');
 addpath('micro_robot_interface');
 addpath('visualize');
-%addpath('data');
 addpath('pathmexmaci64');
 addpath('funjac/single_convex_contact_patches');
+addpath('utility');
 
 cd('micro_robot_interface')
 n = 20; % number of iterations
@@ -23,8 +23,8 @@ wid2 = linspace(50,500,n); %[microns]
 
 %Incline climbing data gathering
 output = zeros(2,n);
-n1 = 19;
-n2 = 19;
+n1 = 1;
+n2 = 20;
 for i = n1:n2
    i % print the current number of iterations
    incline_angle = 26;

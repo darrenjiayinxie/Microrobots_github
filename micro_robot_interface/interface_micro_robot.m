@@ -3,7 +3,7 @@ clear all
 cd('..');
 addpath('micro_robot_interface');
 addpath('visualize');
-
+addpath('utility');
 
 addpath('funjac/single_convex_contact_patches');
 addpath('pathmexmaci64');

@@ -64,7 +64,7 @@ elseif y1>y2
 end
 
 
-size = [x1 x2 y1 y2 z1 z2];
+Size = [x1 x2 y1 y2 z1 z2];
 % plane 
 
 if A.corner == 0
@@ -268,7 +268,7 @@ figure (1);
     
     
     axis equal;
-    axis(ratio*size);
+    axis(ratio*Size);
     hold on
     
     % ground
@@ -281,25 +281,24 @@ figure (1);
     end
      
     axis equal;
-    axis(ratio*size);
+    axis(ratio*Size);
     hold on
     
     % sphere
     if A.cylinder == 1
-        [xs,ys,zs] = cylinder;
-        Ra = [cos(pi/2),0,sin(pi/2);0,1,0;-sin(pi/2),0,cos(pi/2)];
-        P1 = Ra*[xs(1,:);ys(1,:);zs(1,:)];
-        P2 = Ra*[xs(2,:);ys(2,:);zs(2,:)];
-        PP = [A.rc_1*[P1(1,:);P2(1,:)]*unit,A.rc_1*[P1(2,:);P2(2,:)]*unit+A.r1_y*unit,A.rc_1*[P1(3,:);P2(3,:)]*unit+A.r1_z*unit];
-        surf(3*PP(:,1:21),PP(:,22:42),PP(:,43:63),'FaceColor',[0 1 0],'Linestyle','-');
-        surf(-3*PP(:,1:21),PP(:,22:42),PP(:,43:63),'FaceColor',[0 1 0],'Linestyle','-');
-        hold on
+        for I = 1:size(A.r,1)
+            [xs,ys,zs] = cylinder;
+            Ra = [cos(pi/2),0,sin(pi/2);0,1,0;-sin(pi/2),0,cos(pi/2)];
+            P1 = Ra*[xs(1,:);ys(1,:);zs(1,:)];
+            P2 = Ra*[xs(2,:);ys(2,:);zs(2,:)];
+            PP = [A.r(I)*[P1(1,:);P2(1,:)]*unit,A.r(I)*[P1(2,:);P2(2,:)]*unit+A.r_y(I)*unit,A.r(I)*[P1(3,:);P2(3,:)]*unit+A.r_z(I)*unit];
+            surf(3*PP(:,1:21),PP(:,22:42),PP(:,43:63),'FaceColor',[0 1 0],'Linestyle','-');
+            surf(-3*PP(:,1:21),PP(:,22:42),PP(:,43:63),'FaceColor',[0 1 0],'Linestyle','-');
+            hold on
+        end
         
-        P1 = Ra*[xs(1,:);ys(1,:);zs(1,:)];
-        P2 = Ra*[xs(2,:);ys(2,:);zs(2,:)];
-        PP = [A.rc_2*[P1(1,:);P2(1,:)]*unit,A.rc_2*[P1(2,:);P2(2,:)]*unit+A.r2_y*unit,A.rc_2*[P1(3,:);P2(3,:)]*unit+A.r2_z*unit];
-        surf(3*PP(:,1:21),PP(:,22:42),PP(:,43:63),'FaceColor',[0 1 0],'Linestyle','-');
-        surf(-3*PP(:,1:21),PP(:,22:42),PP(:,43:63),'FaceColor',[0 1 0],'Linestyle','-');
+        
+        
     end
     
     % frame
@@ -325,7 +324,7 @@ figure (1);
     p2 = [p21';p22';p23'];
     arrow3(p1,p2,'k1',w,3*w);
     axis equal;
-    axis(ratio*size);
+    axis(ratio*Size);
     hold on
     
     % direction of magnetic field
@@ -333,7 +332,7 @@ figure (1);
     p2 = [xr,yr-cos(theta)*L,sin(theta)*L]';
     arrow3(p1,p2','r1',w,3*w);
     axis equal;
-    axis(ratio*size);
+    axis(ratio*Size);
     if unit == 1e6
         xlabel('x (\mu m)');
         ylabel('y (\mu m)');

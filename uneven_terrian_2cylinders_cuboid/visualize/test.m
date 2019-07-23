@@ -1,7 +1,0 @@
-v = [1 3 0; -1 3 0; 1 5 2; -1 5 2; 1 3 2; -1 3 2]; % Points A, B, E, F, D and C respectively
-%To get the faces, consider them as being defined by their vertices. This prism has 5 faces, 2 of them defined by 3 vertices each (ADE and BFC) and the remaining 3 defined by 4 vertices each (ABFE, EFCD and ABCD). You have to choose from these two sets such that all faces have equal number of vertices and they include all of the edges among them. This can now be done by choosing the set of three four-sided faces. When defining these in code, it is important to maintain the order of the vertices or else you would get a very funky looking graph. The first vertex in vector v is point 1, second is point 2 and so on and so forth.
- f = [1 2 4 3; 3 4 6 5; 1 2 6 5]; % For ABFE, EFCD and ABCD respectively
-%With these two arrays decided, you just need a few more details.
-%1. Your prism is going to have to be transparent or you will not see the edges and general shape / details. For this, we define a patch property called FaceAlpha and set it to 0 for transparent.
-%2. In Matlab, the axes for the graph are set to particular directions and we need to modify them to reflect those of your figure. We also modify the limits on the axes for visual clarity. To do this, we call up axes properties and set the limits (XLim, YLim, ZLim) and directions (XDir, YDir) on the axes.
-trisurf([1,2,3],[1 -1 -1],[3,3,5],[0,0,2])
