@@ -36,16 +36,7 @@ if (A.shape == 'cuboid_shape')
     I_zz = A.I_zz*unit^2*unit_mass;
 
     Height = A.dim(3)*unit/2;
-elseif A.shape == 'geckod_shape'
-    len = A.dim(1)*unit;  % in fixed body frame's x direction
-    wid = A.dim(2)*unit;  % in fixed body frame's y direction
-    heg = A.dim(3)*unit;  % in fixed body frame's z direction
 
-    I_xx = (m/12)*(len^2+heg^2);
-    I_yy = (m/12)*(heg^2+wid^2);
-    I_zz = (m/12)*(wid^2+len^2);
-
-    Height = A.dim(3)*unit/2;
 elseif A.shape == 'spiked_shape'
     len1 = A.dim(1)*unit;
     len2 = A.dim(2)*unit;
@@ -70,18 +61,6 @@ elseif A.shape == 'spiked_ended'
     I_yy = A.I_yy*unit^2*unit_mass;
     I_zz = A.I_zz*unit^2*unit_mass;
 
-elseif A.shape == 'curved_shape'
-    alpha = A.dim(4);
-    r_1 = A.dim(1)*unit;
-    r_2 = A.dim(2)*unit;
-    wid = A.dim(3)*unit;
-    D = ((r_1^3-r_2^3)/(r_1^2-r_2^2))*(2*sin(alpha)/(3*alpha));
-    I_xx = 0.5*m*(r_1^2+r_2^2)-m*D^2;
-    I_yy = I_xx;
-    I_zz = I_xx;
-%       I_xx = 3.7592e-06;
-%       I_yy = 9.8317e-07;
-%       I_zz = 4.6267e-06;
 end
 
 phi = A.phi;

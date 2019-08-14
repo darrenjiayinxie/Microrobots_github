@@ -31,15 +31,15 @@ major minor  func  grad  residual    step  type prox    inorm  (label)
     0     0     8     2 1.1808e-002           I 0.0e+000 1.2e-002 (f[   14])
     1     2     9     3 5.3355e-005  1.0e+000 SM 0.0e+000 4.1e-005 (f[   15])
     2     1    10     4 1.7494e-008  1.0e+000 SO 0.0e+000 1.7e-008 (f[    8])
-    3     1    11     5 1.9722e-015  1.0e+000 SO 0.0e+000 2.0e-015 (f[    8])
+    3     1    11     5 1.9704e-015  1.0e+000 SO 0.0e+000 2.0e-015 (f[    8])
 
 FINAL STATISTICS
-Inf-Norm of Complementarity . .  1.9568e-015 eqn: (f[    8])
-Inf-Norm of Normal Map. . . . .  1.9568e-015 eqn: (f[    8])
+Inf-Norm of Complementarity . .  1.9559e-015 eqn: (f[    8])
+Inf-Norm of Normal Map. . . . .  1.9559e-015 eqn: (f[    8])
 Inf-Norm of Minimum Map . . . .  1.9984e-015 eqn: (f[    8])
-Inf-Norm of Fischer Function. .  1.9568e-015 eqn: (f[    8])
-Inf-Norm of Grad Fischer Fcn. .  2.2230e-016 eqn: (f[   19])
-Two-Norm of Grad Fischer Fcn. .  4.5173e-016
+Inf-Norm of Fischer Function. .  1.9559e-015 eqn: (f[    8])
+Inf-Norm of Grad Fischer Fcn. .  2.2226e-016 eqn: (f[   19])
+Two-Norm of Grad Fischer Fcn. .  4.3757e-016
 
 FINAL POINT STATISTICS
 Maximum of X. . . . . . . . . .  1.4935e+001 var: (x[    4])
@@ -57,5 +57,5 @@ Gradient Steps. . . . . 0
 Function Evaluations. . 11
 Gradient Evaluations. . 5
 Basis Time. . . . . . . 0.000000
-Total Time. . . . . . . 0.010000
-Residual. . . . . . . . 1.972174e-015
+Total Time. . . . . . . 0.004000
+Residual. . . . . . . . 1.970448e-015
