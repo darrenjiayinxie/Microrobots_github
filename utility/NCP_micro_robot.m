@@ -25,15 +25,15 @@ global m g;
 m = A.mass*unit_mass;
 g = A.gravity*unit;
 
-global len wid len1 len2 wid1 wid2 heg  I_xx I_yy I_zz Height phi theta y_c alpha r_1 r_2;
+global len wid len1 len2 wid1 wid2 heg  I_xx I_yy I_zz Height phi theta  alpha r_1 r_2;
 if (A.shape == 'cuboid_shape')
     len = A.dim(1)*unit;  % in fixed body frame's x direction
     wid = A.dim(2)*unit;  % in fixed body frame's y direction
     heg = A.dim(3)*unit;  % in fixed body frame's z direction
 
-    I_xx = (m/12)*(len^2+heg^2);
-    I_yy = (m/12)*(heg^2+wid^2);
-    I_zz = (m/12)*(wid^2+len^2);
+    I_xx = A.I_xx*unit^2*unit_mass;
+    I_yy = A.I_yy*unit^2*unit_mass;
+    I_zz = A.I_zz*unit^2*unit_mass;
 
     Height = A.dim(3)*unit/2;
 elseif A.shape == 'geckod_shape'
@@ -53,20 +53,11 @@ elseif A.shape == 'spiked_shape'
     wid2 = A.dim(4)*unit;
     heg = A.dim(5)*unit;
     
-    tri_b = A.dim(2);
-    tri_h = (A.dim(3)-A.dim(4))/2;
-    tri_a = tri_b/2;
     
-    d_a = (tri_h/3+A.dim(4)/2)*unit;
-    m1 = A.density*A.dim(1)*A.dim(4)*A.dim(5)*unit_mass;
-    m_tri = 0.5*A.density*tri_b*tri_h*A.dim(5)*unit_mass;
-    I_xx_tri = unit^2*unit_mass*A.density*A.dim(5)*(tri_b^3*tri_h-tri_b^2*tri_h*tri_a+tri_b*tri_h*tri_a^2+tri_b*tri_h^3)/36;
-    I_xx = (m1/12)*(len1^2+wid1^2) + (I_xx_tri + m_tri*d_a^2)*2;
-    I_yy = (m/12)*(heg^2+wid1^2);
-    I_zz = (m/12)*(heg^2+len1^2);
-%       I_xx = 3.7592e-06;
-%       I_yy = 9.8317e-07;
-%       I_zz = 4.6267e-06;
+    I_xx = A.I_xx*unit^2*unit_mass;
+    I_yy = A.I_yy*unit^2*unit_mass;
+    I_zz = A.I_zz*unit^2*unit_mass;
+
 elseif A.shape == 'spiked_ended'
     len1 = A.dim(1)*unit;
     len2 = A.dim(2)*unit;
@@ -74,21 +65,11 @@ elseif A.shape == 'spiked_ended'
     wid2 = A.dim(4)*unit;
     heg = A.dim(5)*unit;
     
-    tri_b = A.dim(2);
-    tri_h = A.dim(4);
-    tri_a = tri_b/2;
-    
-    d_a = sqrt((A.dim(1)-A.dim(2)/2)^2+(A.dim(3)/2+A.dim(4)/3)^2)*unit;
-    m1 = A.density*A.dim(1)*A.dim(3)*A.dim(5)*unit_mass;
-    m_tri = 0.5*A.density*tri_b*tri_h*A.dim(5)*unit_mass;
-    I_xx_tri = unit^2*unit_mass*A.density*A.dim(5)*(tri_b^3*tri_h-tri_b^2*tri_h*tri_a+tri_b*tri_h*tri_a^2+tri_b*tri_h^3)/36;
-    
-    I_xx = (m1/12)*(len1^2+wid1^2) + (I_xx_tri + m_tri*d_a^2)*4;
-    I_yy = (m/12)*(heg^2+wid1^2);
-    I_zz = (m/12)*(wid1^2+len1^2);
-%       I_xx = 3.7592e-06;
-%       I_yy = 9.8317e-07;
-%       I_zz = 4.6267e-06;
+        
+    I_xx = A.I_xx*unit^2*unit_mass;
+    I_yy = A.I_yy*unit^2*unit_mass;
+    I_zz = A.I_zz*unit^2*unit_mass;
+
 elseif A.shape == 'curved_shape'
     alpha = A.dim(4);
     r_1 = A.dim(1)*unit;
