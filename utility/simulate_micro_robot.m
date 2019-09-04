@@ -1,13 +1,15 @@
 function [output] = simulate_micro_robot(len2,wid2,incline_angle)
 
 %%  dimensions and density of the robot of the robot
-A.shape ='spiked_ended';
+A = struct();
+A.shape ='spiked_shape';
 if A.shape == 'cuboid_shape'
     A.dim=[800e-6 400e-6 100e-6]; %(m) length width height
     A.density = 2.1688e3; %kg/m^3
  
 elseif A.shape == 'spiked_shape'
-    A.dim=[800e-6 200e-6 650e-6 150e-6 300e-6]; %(m) len1 len2 wid1 wid2 heg
+    wid1 = wid2*2+150;
+    A.dim=[800e-6 len2*1e-6  wid1*1e-6 150*1e-6  300e-6]; %(m) len1 len2 wid1 wid2 heg
     A.density = 2.1688e3; %kg/m^3
 
 elseif A.shape == 'spiked_ended'
@@ -56,7 +58,7 @@ A.B =20e-3; % T
 A.fqn = 10; %Hz from 0Hz to 15 Hz
 
 
-%% geometary of the inclined surface
+%% geometry of the inclined surface
 A.theta = (incline_angle/180)*pi; % [radians]
 %A.theta = (45/180)*pi; % inclined angle
 

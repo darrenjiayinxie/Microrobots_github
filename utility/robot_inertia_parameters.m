@@ -29,9 +29,24 @@ elseif A.shape == 'spiked_shape'
     A.mass = A.V_m*A.density; %(kg)
     
     %% Chenghao, you can put your code here
-    %I_xx = 
-    %I_yy = 
-    %I_zz = 
+    length_r = A.dim(1);
+    length_s = A.dim(2);
+%     height_r = A.dim(3);
+%     height_s = A.dim(4);
+    height_r = A.dim(4);
+    height_s = (A.dim(3)-A.dim(4))/2;
+    width_r = A.dim(5);
+    width_s = A.dim(5);
+    density = A.density;
+    
+    A.I_xx = density*((height_r*length_r*width_r^3)/12 + (height_r*length_r^3*width_r)/12)...
+            + 2*density*((height_s*length_s*width_s^3)/24 + (height_s*length_s^3*width_s)/48);
+    A.I_yy = density*((height_r^3*length_r*width_r)/12 + (height_r*length_r*width_r^3)/12)...
+            + 2*density*((height_s^3*length_s*width_s)/36 + (height_s*length_s*width_s^3)/24)...
+            + 2*density*0.5*length_s*height_s*width_s * ((0.5*height_r + (1/3)*height_s)^2);
+    A.I_zz = density*((height_r^3*length_r*width_r)/12 + (height_r*length_r^3*width_r)/12)...
+            + 2*density*((height_s^3*length_s*width_s)/36 + (height_s*length_s^3*width_s)/48)...
+            + 2*density*0.5*length_s*height_s*width_s * ((0.5*height_r + (1/3)*height_s)^2);
 elseif A.shape == 'spiked_ended'
     
 
@@ -45,9 +60,23 @@ elseif A.shape == 'spiked_ended'
     A.mass = A.V_m*A.density; %(kg)
     
     %% Chenghao, you can put your code here
-    %I_xx = 
-    %I_yy = 
-    %I_zz = 
+    length_r = A.dim(1);
+    length_s = A.dim(2);
+    height_r = A.dim(3);
+    height_s = A.dim(4);
+    width_r = A.dim(5);
+    width_s = A.dim(5);
+    density = A.density;
+    
+    A.I_xx = density*((height_r*length_r*width_r^3)/12 + (height_r*length_r^3*width_r)/12)...
+            + 4*density*((height_s*length_s*width_s^3)/24 + (height_s*length_s^3*width_s)/48)...
+            + 4*density*0.5*height_s*length_s*width_s * ((0.5*length_r - 0.5*length_s)^2);
+    A.I_yy = density*((height_r^3*length_r*width_r)/12 + (height_r*length_r*width_r^3)/12)...
+            + 4*density*((height_s^3*length_s*width_s)/36 + (height_s*length_s*width_s^3)/24)...
+            + 4*density*0.5*height_s*length_s*width_s * ((0.5*height_r + (1/3)*height_s)^2);
+    A.I_zz = density*((height_r^3*length_r*width_r)/12 + (height_r*length_r^3*width_r)/12)...
+            + 4*density*((height_s^3*length_s*width_s)/36 + (height_s*length_s^3*width_s)/48)...
+            + 4*density*0.5*height_s*length_s*width_s * ((0.5*height_r + (1/3)*height_s)^2 + (0.5*length_r - 0.5*length_s)^2);
 end
 
 

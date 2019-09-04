@@ -25,16 +25,13 @@ global m g;
 m = A.mass*unit_mass;
 g = A.gravity*unit;
 
-global len wid len1 len2 wid1 wid2 heg  I_xx I_yy I_zz Height phi theta  alpha r_1 r_2;
+global len wid len1 len2 wid1 wid2 heg  I_xx I_yy I_zz Height phi theta;
 if (A.shape == 'cuboid_shape')
     len = A.dim(1)*unit;  % in fixed body frame's y direction
     wid = A.dim(2)*unit;  % in fixed body frame's x direction
     heg = A.dim(3)*unit;  % in fixed body frame's z direction
 
-    I_xx = A.I_xx*unit^2*unit_mass;
-    I_yy = A.I_yy*unit^2*unit_mass;
-    I_zz = A.I_zz*unit^2*unit_mass;
-
+    
     Height = A.dim(3)*unit/2;
 
 elseif A.shape == 'spiked_shape'
@@ -44,10 +41,6 @@ elseif A.shape == 'spiked_shape'
     wid2 = A.dim(4)*unit;
     heg = A.dim(5)*unit;
     
-    
-    I_xx = A.I_xx*unit^2*unit_mass;
-    I_yy = A.I_yy*unit^2*unit_mass;
-    I_zz = A.I_zz*unit^2*unit_mass;
 
 elseif A.shape == 'spiked_ended'
     len1 = A.dim(1)*unit;
@@ -57,12 +50,13 @@ elseif A.shape == 'spiked_ended'
     heg = A.dim(5)*unit;
     
         
-    I_xx = A.I_xx*unit^2*unit_mass;
-    I_yy = A.I_yy*unit^2*unit_mass;
-    I_zz = A.I_zz*unit^2*unit_mass;
-
 end
 
+I_xx = A.I_xx*unit^2*unit_mass;
+I_yy = A.I_yy*unit^2*unit_mass;
+I_zz = A.I_zz*unit^2*unit_mass;
+
+    
 phi = A.phi;
 
 theta = A.theta;

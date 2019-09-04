@@ -2,60 +2,60 @@ Path 4.7.03: Matlab Link
 26 row/cols, 528 non-zeros, 78.11% dense.
 
 Reading options file path.opt
- > convergence_tolerance 1e-10;
+ > convergence_tolerance 1e-6;
 Read of options file complete.
 
 Path 4.7.03 (Wed Nov 21 16:35:11 2012)
 Written by Todd Munson, Steven Dirkse, and Michael Ferris
 
 INITIAL POINT STATISTICS
-Maximum of X. . . . . . . . . .  2.5149e+001 var: (x[    4])
-Maximum of F. . . . . . . . . .  7.9842e-001 eqn: (f[   20])
-Maximum of Grad F . . . . . . .  6.6091e+000 eqn: (f[    9])
-                                            var: (x[    6])
+Maximum of X. . . . . . . . . .  5.6435e+001 var: (x[    2])
+Maximum of F. . . . . . . . . .  2.1522e+000 eqn: (f[   23])
+Maximum of Grad F . . . . . . .  2.5068e+000 eqn: (f[   23])
+                                            var: (x[    8])
 
 INITIAL JACOBIAN NORM STATISTICS
-Maximum Row Norm. . . . . . . .  6.6091e+000 eqn: (f[    9])
-Minimum Row Norm. . . . . . . .  9.5797e-004 eqn: (f[    7])
-Maximum Column Norm . . . . . .  6.6092e+000 var: (x[    6])
-Minimum Column Norm . . . . . .  4.6699e-004 var: (x[   16])
+Maximum Row Norm. . . . . . . .  1.2003e+001 eqn: (f[   14])
+Minimum Row Norm. . . . . . . .  8.6053e-004 eqn: (f[   16])
+Maximum Column Norm . . . . . .  1.3003e+001 var: (x[    8])
+Minimum Column Norm . . . . . .  4.1415e-004 var: (x[   16])
 
 Crash Log
 major  func  diff  size  residual    step       prox   (label)
-    0     0             1.2681e-002             0.0e+000 (f[   14])
-    1     7     0    17 1.1808e-002  6.9e-002    0.0e+000 (f[   14])
+    0     0             3.1770e-002             0.0e+000 (f[   14])
+    1     1     0    20 5.0642e-004  1.0e+000    0.0e+000 (f[    7])
 pn_search terminated: no basis change.
 
 Major Iteration Log
 major minor  func  grad  residual    step  type prox    inorm  (label)
-    0     0     8     2 1.1808e-002           I 0.0e+000 1.2e-002 (f[   14])
-    1     2     9     3 5.3355e-005  1.0e+000 SM 0.0e+000 4.1e-005 (f[   15])
-    2     1    10     4 1.7494e-008  1.0e+000 SO 0.0e+000 1.7e-008 (f[    8])
-    3     1    11     5 1.9704e-015  1.0e+000 SO 0.0e+000 2.0e-015 (f[    8])
+    0     0     2     2 5.0642e-004           I 0.0e+000 4.3e-004 (f[    7])
+    1     1     3     3 2.9527e-004  1.0e+000 SO 0.0e+000 2.5e-004 (f[    8])
+    2     1     4     4 4.6852e-005  1.0e+000 SO 0.0e+000 3.3e-005 (f[    9])
+    3     1     5     5 2.8942e-007  1.0e+000 SO 0.0e+000 2.4e-007 (f[    7])
 
 FINAL STATISTICS
-Inf-Norm of Complementarity . .  1.9559e-015 eqn: (f[    8])
-Inf-Norm of Normal Map. . . . .  1.9559e-015 eqn: (f[    8])
-Inf-Norm of Minimum Map . . . .  1.9984e-015 eqn: (f[    8])
-Inf-Norm of Fischer Function. .  1.9559e-015 eqn: (f[    8])
-Inf-Norm of Grad Fischer Fcn. .  2.2226e-016 eqn: (f[   19])
-Two-Norm of Grad Fischer Fcn. .  4.3757e-016
+Inf-Norm of Complementarity . .  2.3963e-007 eqn: (f[    7])
+Inf-Norm of Normal Map. . . . .  2.3963e-007 eqn: (f[    7])
+Inf-Norm of Minimum Map . . . .  2.3963e-007 eqn: (f[    7])
+Inf-Norm of Fischer Function. .  2.3963e-007 eqn: (f[    7])
+Inf-Norm of Grad Fischer Fcn. .  8.0462e-007 eqn: (f[   13])
+Two-Norm of Grad Fischer Fcn. .  1.0167e-006
 
 FINAL POINT STATISTICS
-Maximum of X. . . . . . . . . .  1.4935e+001 var: (x[    4])
-Maximum of F. . . . . . . . . .  8.0000e-001 eqn: (f[   20])
-Maximum of Grad F . . . . . . .  7.3984e+000 eqn: (f[    9])
+Maximum of X. . . . . . . . . .  5.8740e+001 var: (x[    4])
+Maximum of F. . . . . . . . . .  2.1500e+000 eqn: (f[   23])
+Maximum of Grad F . . . . . . .  3.9009e+000 eqn: (f[    9])
                                             var: (x[    6])
 
  ** EXIT - solution found.
 
 Major Iterations. . . . 3
-Minor Iterations. . . . 4
+Minor Iterations. . . . 3
 Restarts. . . . . . . . 0
 Crash Iterations. . . . 1
 Gradient Steps. . . . . 0
-Function Evaluations. . 11
+Function Evaluations. . 5
 Gradient Evaluations. . 5
 Basis Time. . . . . . . 0.000000
-Total Time. . . . . . . 0.004000
-Residual. . . . . . . . 1.970448e-015
+Total Time. . . . . . . 0.002000
+Residual. . . . . . . . 2.894223e-007
