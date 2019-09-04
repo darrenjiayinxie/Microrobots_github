@@ -113,7 +113,7 @@ a12_z = Z(12);
     if A.shape == 'cuboid_shape'
         Z_new(24) =0;
     elseif  A.shape == 'spiked_shape'
-        Z_new(26) = p1_n+m*g*h*(2*R);
+        Z_new(26) = p1_n+m*g*h*(R);
     elseif  A.shape == 'spiked_ended'
         Z_new(28) = p1_n;
     elseif A.shape == 'geckod_shape'
