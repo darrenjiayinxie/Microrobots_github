@@ -10,10 +10,10 @@ cd('micro_robot_interface')
 n = 20; % number of iterations
 len2 = linspace(50,400,n); %[microns]
 wid2 = linspace(50,1000,n); %[microns]
-
+% 
 % CAN ONLY RUN ONE GATHERING SET UP AT ONE TIME (comment out the other)
 output = zeros(1,n);
-
+% 
 %% Speed data gathering
 incline_angle = 0; % [degrees]
 for i = 1:20
@@ -27,7 +27,7 @@ end
 % n2 = 20;
 % for i = n1:n2
 %    i % print the current number of iterations
-%    incline_angle = 26;
+%    incline_angle = 25;
 %    check = 0;
 %    out = [0;0];
 %    while check >= 0

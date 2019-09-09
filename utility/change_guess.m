@@ -115,7 +115,7 @@ a12_z = Z(12);
     elseif  A.shape == 'spiked_shape'
         Z_new(26) = p1_n+m*g*h*(R);
     elseif  A.shape == 'spiked_ended'
-        Z_new(28) = p1_n;
+        Z_new(28) = p1_n+m*g*h*(R);
     elseif A.shape == 'geckod_shape'
         Z_new(24) = p1_n;
     elseif A.shape == 'curved_shape'

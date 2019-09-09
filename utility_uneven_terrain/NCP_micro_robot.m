@@ -33,12 +33,14 @@ if (A.shape == 'cuboid_shape')
     wid = A.dim(2)*unit;  % in fixed body frame's y direction
     heg = A.dim(3)*unit;  % in fixed body frame's z direction
 
-    I_xx = (m/12)*(len^2+heg^2);
-    I_yy = (m/12)*(heg^2+wid^2);
-    I_zz = (m/12)*(wid^2+len^2);
-
     Height = A.dim(3)*unit/2;
 end
+
+
+I_xx = A.I_xx*unit^2*unit_mass;
+I_yy = A.I_yy*unit^2*unit_mass;
+I_zz = A.I_zz*unit^2*unit_mass;
+
 phi = A.phi;
 
 theta = A.theta;

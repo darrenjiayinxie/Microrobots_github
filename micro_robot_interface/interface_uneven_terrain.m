@@ -12,19 +12,30 @@ cd('micro_robot_interface');
 
 A = struct();
 
-% approximate dimension of the object 
+%% approximate dimension of the object 
 A.shape ='cuboid_shape';
+
+if A.shape == 'cuboid_shape'
+    A.dim=[800e-6 400e-6 100e-6]; %(m) length width height
+    A.density = 2.1688e3; %kg/m^3
+    
+elseif A.shape == 'spiked_shape'
+    A.dim=[800e-6 200e-6 650e-6 150e-6 300e-6]; %(m) len1 len2 wid1 wid2 heg
+    A.density = 2.1688e3; %kg/m^3
+    
+elseif A.shape == 'spiked_ended'
+    A.dim=[800e-6 100e-6 150e-6 125e-6 400e-6]; %(m) len1 len2 wid1 wid2 heg
+    A.density = 2.1688e3; %kg/m^3
+
+end
 A.cylinder =1;
-A.dim=[800e-6 400e-6 100e-6]; %(m) length width height
-A.density = 2.1688e3; %kg/m^l
-A.V_m = 2.9e-11; % m^3d
-A.mass = 1.6071e-7; %(kg)
+A = robot_inertia_parameters(A);
 
 A.gravity = 9.8; %(m/s^2)
-% time step
+%% time step
 A.h = 5e-4; %(s)
 
-% friction model
+%% friction model
 A.ellipsoid = [1 1 0.1]; % the choice of e_r (m) depends on the CM
 
 A.material = 'alumi';
@@ -40,19 +51,10 @@ end
 %
 
 
-
-%A.M_r = 15000;% A/m old robot
+%% magnetic parameters
 A.M_r = 51835;% A/m new robot
-%A.phi = (27/180)*pi; % rad offset angle of old robot
 A.phi = (0/180)*pi; % rad offset angle of new robot
-
 A.B =10e-3; % T
-%A.B =0;
-
-
-
-
-
 % the frequency of the ratational magnetic field
 A.fqn = 5; %Hz from 0Hz to 15 Hz
 
@@ -60,31 +62,36 @@ A.fqn = 5; %Hz from 0Hz to 15 Hz
 
 
 
-% geometary of the inclined surface
+%% geometary of the inclined surface
 %A.theta = 0;
 A.theta = (0/180)*pi; % inclined angle
 
-% geometry of the terrain
-delta_1 = 0.05e-3; %distance between robot and first bump
 
-delta_2 = 0.3e-3; %distance between first bump and second bump
+%% initial state
 
-N = 2; % number of bumps
-r = 0.3e-3:0.1e-3:0.4e-3;
-
-% initial state
-H = A.dim(3); 
+if A.shape == 'cuboid_shape'
+     H = A.dim(3); 
+elseif A.shape == 'spiked_shape'
+     H = A.dim(3);
+elseif A.shape == 'spiked_ended'
+     H = A.dim(3)+2*A.dim(4);
+end
 A.initial_q = [0;0;H/(2*cos(A.theta ));cos((A.theta +pi)/2);-sin((A.theta+pi)/2);0;0];
+ 
 A.initial_v = [0;0;0;0;0;0];  %m/s
 
-[r_y,r_z] = generate_obstacles(A,N,r,delta_1,delta_2);
+
+%% geometry of the terrain
+N = 5; % number of bumps
+
+
+[r_y,r_z,r] = generate_obstacles(A,N);
 A.r_y = r_y;
 A.r_z = r_z;
 A.r = r';
 
 
-
-% unit for meter
+%% unit for meter
 A.unit = 1e3; % 1 - m, 10 - dm, 100 - cm, 1000 - mm ,1e6 um 
 % unit for mass
 A.unit_mass = 1e3; % 1-kg, 1e3 - g;
