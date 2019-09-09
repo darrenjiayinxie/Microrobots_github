@@ -19,13 +19,13 @@ if A.shape == 'cuboid_shape'
     A.dim=[800e-6 400e-6 100e-6]; %(m) length width height
     A.density = 2.1688e3; %kg/m^3
     
-elseif A.shape == 'spiked_shape'
-    A.dim=[800e-6 200e-6 650e-6 150e-6 300e-6]; %(m) len1 len2 wid1 wid2 heg
-    A.density = 2.1688e3; %kg/m^3
+%elseif A.shape == 'spiked_shape'
+ %   A.dim=[800e-6 200e-6 650e-6 150e-6 300e-6]; %(m) len1 len2 wid1 wid2 heg
+ %   A.density = 2.1688e3; %kg/m^3
     
-elseif A.shape == 'spiked_ended'
-    A.dim=[800e-6 100e-6 150e-6 125e-6 400e-6]; %(m) len1 len2 wid1 wid2 heg
-    A.density = 2.1688e3; %kg/m^3
+%elseif A.shape == 'spiked_ended'
+ %  A.dim=[800e-6 100e-6 150e-6 125e-6 400e-6]; %(m) len1 len2 wid1 wid2 heg
+ %  A.density = 2.1688e3; %kg/m^3
 
 end
 A.cylinder =1;
@@ -71,10 +71,10 @@ A.theta = (0/180)*pi; % inclined angle
 
 if A.shape == 'cuboid_shape'
      H = A.dim(3); 
-elseif A.shape == 'spiked_shape'
-     H = A.dim(3);
-elseif A.shape == 'spiked_ended'
-     H = A.dim(3)+2*A.dim(4);
+%elseif A.shape == 'spiked_shape'
+ %    H = A.dim(3);
+%elseif A.shape == 'spiked_ended'
+ %    H = A.dim(3)+2*A.dim(4);
 end
 A.initial_q = [0;0;H/(2*cos(A.theta ));cos((A.theta +pi)/2);-sin((A.theta+pi)/2);0;0];
  
