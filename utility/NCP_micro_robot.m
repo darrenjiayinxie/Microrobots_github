@@ -175,8 +175,8 @@ for i=1:N
    q_old = Q; % updating the beginning value for next time step
    nu_old = Nu; 
    %% determine the adhensive force coarsively
-   %Van = adhensive_force(A,i,index);
-   %A.VAN(i) = Van/(A.unit*A.unit_mass*A.h);
+   Van = adhensive_force(A,i,index);
+   A.VAN(i) = Van/(A.unit*A.unit_mass*A.h);
    
 end
 

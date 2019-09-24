@@ -11,7 +11,7 @@ addpath('pathmexmaci64');
 cd('micro_robot_interface')
 A = struct();
 
-A.shape ='spiked_ended';
+A.shape ='cuboid_shape';
 if A.shape == 'cuboid_shape'
     A.dim=[800e-6 400e-6 100e-6]; %(m) length width height
     A.density = 2.1688e3; %kg/m^3

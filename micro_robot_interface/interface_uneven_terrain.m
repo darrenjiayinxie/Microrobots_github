@@ -56,7 +56,7 @@ A.M_r = 51835;% A/m new robot
 A.phi = (0/180)*pi; % rad offset angle of new robot
 A.B =10e-3; % T
 % the frequency of the ratational magnetic field
-A.fqn = 5; %Hz from 0Hz to 15 Hz
+A.fqn = 10; %Hz from 0Hz to 15 Hz
 
 
 
