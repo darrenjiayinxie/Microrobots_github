@@ -8,8 +8,6 @@ e_t = A.ellipsoid(1);
 e_o = A.ellipsoid(2);
 e_r = A.ellipsoid(3)*unit;
 
-theta = A.theta;
-global Van;
 
 m = A.mass*unit_mass;
 g = A.gravity*unit;

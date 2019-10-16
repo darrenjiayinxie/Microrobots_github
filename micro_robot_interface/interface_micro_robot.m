@@ -79,7 +79,7 @@ elseif A.shape == 'spiked_ended'
 end
 A.initial_q = [0;0;H/(2*cos(A.theta ));cos((A.theta +pi)/2);-sin((A.theta+pi)/2);0;0];
  
-A.initial_v = [0;0;0;0;0;0];  %m/s
+A.initial_v = [0;0;0;0;0;0];  %m/s => [v_x,v_y,v_z,w_x,w_y,w_z]
 
 %% units
 % unit for meter

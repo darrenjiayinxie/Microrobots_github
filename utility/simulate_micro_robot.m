@@ -113,3 +113,4 @@ else
         output = [incline_angle;max_velocity];         % output the incline angle if the robot succeeded in climbing it
     end
 end
+end

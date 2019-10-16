@@ -139,6 +139,7 @@ for i=1:N
             else
                 Z_new = change_guess(A,Z,Q,r1_y,r2_y,rc_1,rc_2);
             end
+           
             tic
             [A.z(:,i,index),f,J,Mu,status] = pathmcp(Z_new,l,u,fun);
             time_NCP = toc;

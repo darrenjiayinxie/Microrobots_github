@@ -82,7 +82,7 @@ A.initial_v = [0;0;0;0;0;0];  %m/s
 
 
 %% geometry of the terrain
-N = 5; % number of bumps
+N = 2; % number of bumps N>=2
 
 
 [r_y,r_z,r] = generate_obstacles(A,N);

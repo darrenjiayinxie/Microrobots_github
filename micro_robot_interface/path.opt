@@ -1,1 +1,1 @@
-convergence_tolerance 1e-10;
+convergence_tolerance 1e-6;
