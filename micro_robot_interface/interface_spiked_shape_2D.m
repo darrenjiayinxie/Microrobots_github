@@ -12,7 +12,7 @@ cd('micro_robot_interface')
 A = struct();
 
 A.shape = 'spiked_shape';
-A.dim=[800e-6 200e-6 1200e-6 150e-6 300e-6]; %(m) len1 len2 wid1 wid2 heg
+A.dim=[800e-6 200e-6 150e-6 150e-6 300e-6]; %(m) len1 len2 wid1 wid2 heg
 A.density = 2.1688e3; %kg/m^3
     
 A = robot_inertia_parameters(A);
@@ -24,7 +24,7 @@ A.h = 5e-4; %(s)
 %% friction parameter
 A.ellipsoid = [1 1 0.1]; % the choice of e_r (m) depends on the CM
 
-A.material = 'paper';
+A.material = 'alumi';
 if A.material == 'paper'
     A.cof = 0.3; % coefficient of friction
     A.van_constant = 3.7148; %N/m^2
@@ -73,8 +73,10 @@ A.unit = 1e3; % 1 - m, 10 - dm, 100 - cm, 1000 - mm ,1e6 um
 A.unit_mass = 1e3; % 1-kg, 1e3 - g;%% planner for the robot
 A = planner_2D(A);
 
-A.r = 5e-4;
-A.r1_x = - (A.r+3e-4+A.dim(1)/2);
-A.r1_y = 0;
+[r_x,r_y,r] = generate_obstacles(A, 2);
+A.r_x = r_x;
+A.r_y = r_y;
+A.r = r';
+
 A.n_i = 1;
 A = NCP_micro_robot_2D(A);

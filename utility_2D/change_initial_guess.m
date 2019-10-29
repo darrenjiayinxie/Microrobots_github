@@ -13,12 +13,49 @@ mu = A.cof;
 R = rand;    
 Z_new = R*Z;
 
-R = rand;    
-Z_new(48) = R*Z(48);
+R = rand;
+if R < 0.5
+    Z_new(34) = 0;
+    Z_new(70) = 0;
+else
+    Z_new(70) = R*Z(70);
+end
+R = rand; 
+if R < 0.5
+    Z_new(35) = 0;
+    Z_new(71) = 0;
+else
+    Z_new(71) = R*Z(71);
+end
+R = rand;  
+if R < 0.5
+    Z_new(36) = 0;
+    Z_new(72) = 0;
+else
+    Z_new(72) = R*Z(72);
+end
+R = rand;  
+if R < 0.5
+    Z_new(37) = 0;
+    Z_new(73) = 0;
+else
+    Z_new(73) = R*Z(73);
+end
 
-Z_new(49) = R*Z(49);
+R = rand;  
+if R < 0.5
+    Z_new(38) = 0;
+    Z_new(74) = 0;
+else
+    Z_new(74) = R*Z(74);
+end
 
-Z_new(50) = R*Z(50);
 
-Z_new(51) = R*Z(51);
+R = rand;  
+if R < 0.5
+    Z_new(39) = 0;
+    Z_new(75) = 0;
+else
+    Z_new(75) = R*Z(75);
+end
 end

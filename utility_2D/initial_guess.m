@@ -32,48 +32,58 @@ a_y = 0; % assuming surface contact
 len1 = A.dim(1)*unit;
 wid1 = A.dim(3)*unit;
 wid2 = A.dim(4)*unit;
-r1_x = A.r1_x*unit;
-r = A.r*unit;
+r1_x = A.r_x(1)*unit;
+rc1 = A.r(1)*unit;
+
+r2_x = A.r_x(2)*unit;
+rc2 = A.r(2)*unit;
+
 
 ECP1 = [q_x;a_y+wid1/2;q_x;a_y];
-ECP2 = [q_x-len1/2;a_y+wid1/2-wid2/2;r1_x+r;a_y];
+ECP2 = [q_x-len1/2;a_y+wid1/2-wid2/2;r1_x+rc1;a_y];
 ECP3 = [q_x;a_y;q_x;a_y];
-ECP4 = [q_x;a_y;r1_x+r;a_y];
-
+ECP4 = [q_x;a_y;r1_x+rc1;a_y];
+ECP5 = [q_x-len1/2;a_y+wid1/2-wid2/2;r2_x+rc2;a_y];
+ECP6 = [q_x;a_y;r2_x+rc2;a_y];
 
 
 sig1 = 0;
 sig2 =0;
 sig3 = v_x;
 sig4 = 0;
+sig5 = 0;
+sig6 = 0;
 
 p_n1 = 0;
 p_n2 = 0;
 p_n3 = (m*g*h+F_elect*h);
 p_n4 = 0;
-
+p_n5 = 0;
+p_n6 = 0;
 
 p_t1 = 0;
 p_t2 = 0;
 p_t3 = mu*p_n3;
 p_t4 = 0;
+p_t5 = 0;
+p_t6 = 0;
 
+Con_wrench = [p_t1;p_t2;p_t3;p_t4;p_t5;p_t6];
 
-Con_wrench = [p_t1;p_t2;p_t3;p_t4];
-
-A.l(1:23,1) = -infty;
-A.l(24:51,1) = 0;
-A.u(1:51,1) = infty;
+A.l(1:33,1) = -infty;
+A.l(34:75,1) = 0;
+A.u(1:75,1) = infty;
 La1 =[0;0;1;0;wid1/2]; %% assuming planar contact
 La2 =[0;0;0;0;0]; %% assuming planar contact
 La3 =[0;0.5;0.5;0;0]; %% assuming planar contact
 La4 =[0;0.5;0.5;0;0]; %% assuming planar contact
-
+La5 =[0;0;0;0;0]; %% assuming planar contact
+La6 =[0;0.5;0.5;0;0]; %% assuming planar contact
 
 A.fun = 'mcp_funjac_microrobot_spiked_2D_2cylinders_terrain';
 A.check = @mcp_funjac_microrobot_spiked_2D_2cylinders_terrain;
   
-A.Z = [nu;ECP1;ECP2;ECP3;ECP4;Con_wrench;sig1;sig2;sig3;sig4;La1;La2;La3;La4;p_n1;p_n2;p_n3;p_n4]; 
+A.Z = [nu;ECP1;ECP2;ECP3;ECP4;ECP5;ECP6;Con_wrench;sig1;sig2;sig3;sig4;sig5;sig6;La1;La2;La3;La4;La5;La6;p_n1;p_n2;p_n3;p_n4;p_n5;p_n6]; 
 
 
 end

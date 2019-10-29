@@ -42,9 +42,14 @@ global h;
 h = A.h;
 
 global rc_1 r1_x r1_y;
-rc_1 = A.r*unit;
-r1_x = A.r1_x*unit;
-r1_y = A.r1_y*unit;
+rc_1 = A.r(1)*unit;
+r1_x = A.r_x(1)*unit;
+r1_y = A.r_y(1)*unit;
+
+global rc_2 r2_x r2_y;
+rc_2 = A.r(2)*unit;
+r2_x = A.r_x(2)*unit;
+r2_y = A.r_y(2)*unit;
 
 
 % applied wrenches
@@ -126,7 +131,7 @@ for i=1:N
     %% determine the adhensive force coarsively
    
    % Van = adhensive_force(A,i,index);
-    %A.VAN(i) = Van/(A.unit*A.unit_mass*A.h);
+   %A.VAN(i) = Van/(A.unit*A.unit_mass*A.h);
    Nu = A.z(1:3,i,index);
    Q = q_old +h*Nu;
    
@@ -137,7 +142,7 @@ for i=1:N
    
    q_old = Q; % updating the beginning value for next time step
    nu_old = Nu; 
-
+   [r1_x,r2_x,rc_1,rc_2]=deter_pos_cylinders(A,Q);
    i
    
 end

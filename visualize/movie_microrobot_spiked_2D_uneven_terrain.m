@@ -75,18 +75,20 @@ figure (1);
     axis(ratio*Size);
     
     
-    
-    r = A.r*unit;
-    xc = A.r1_x*unit;
-    yc = 0;
+    for ii = 1:size(A.r,1)
+        r1 = A.r(ii)*unit;
+        xc(ii) = A.r_x(ii)*unit;
+        yc = 0;
 
-    theta = linspace(0,2*pi);
-    x = r*cos(theta) + xc;
-    y = r*sin(theta) + yc;
-    plot(x,y);
-    hold on
-        
- 
+        theta = linspace(0,2*pi);
+        cx1 = r1*cos(theta) + xc(ii);
+        cy1 = r1*sin(theta) + yc;
+    
+    
+    
+        plot(cx1,cy1);
+        hold on
+    end
     
     hold off
     frame = getframe(gcf);
