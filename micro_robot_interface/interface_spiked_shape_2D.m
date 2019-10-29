@@ -58,8 +58,6 @@ A.theta = 0;
 
 %% initial state
 
-
-A.shape = 'spiked_shape';
 H = A.dim(3);
 
 A.initial_q = [0;H/(2*cos(A.theta));pi];
