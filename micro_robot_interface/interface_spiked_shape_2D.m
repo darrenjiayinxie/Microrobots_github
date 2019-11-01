@@ -12,9 +12,15 @@ cd('micro_robot_interface')
 A = struct();
 
 A.shape = 'spiked_shape';
-A.dim=[800e-6 200e-6 150e-6 150e-6 300e-6]; %(m) len1 len2 wid1 wid2 heg
-A.density = 2.1688e3; %kg/m^3
-    
+if A.shape == 'spiked_shape'
+    A.dim=[800e-6 200e-6 550e-6 150e-6 300e-6]; %(m) len1 len2 wid1 wid2 heg
+    A.density = 2.1688e3; %kg/m^3
+    H = A.dim(3);
+elseif A.shape == 'spiked_ended'
+    A.dim=[800e-6 100e-6 150e-6 125e-6 400e-6]; %(m) len1 len2 wid1 wid2 heg
+    A.density = 2.1688e3; %kg/m^3
+    H = A.dim(3)+2*A.dim(4);
+end
 A = robot_inertia_parameters(A);
 
 A.gravity = 9.8; %(m/s^2)
@@ -58,7 +64,7 @@ A.theta = 0;
 
 %% initial state
 
-H = A.dim(3);
+
 
 A.initial_q = [0;H/(2*cos(A.theta));pi];
  
@@ -71,7 +77,8 @@ A.unit = 1e3; % 1 - m, 10 - dm, 100 - cm, 1000 - mm ,1e6 um
 A.unit_mass = 1e3; % 1-kg, 1e3 - g;%% planner for the robot
 A = planner_2D(A);
 
-[r_x,r_y,r] = generate_obstacles(A, 2);
+N = 5; % number of bumps, N>=2
+[r_x,r_y,r] = generate_obstacles(A, N);
 A.r_x = r_x;
 A.r_y = r_y;
 A.r = r';

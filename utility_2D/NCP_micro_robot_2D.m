@@ -81,7 +81,7 @@ nu_old(3,1) = A.initial_v(3);
  Z = A.Z;
  
  fun = A.fun;
- Q = q_old;
+
 for i=1:N
     p_x = P_x(i);
     p_y = P_y(i);
@@ -89,7 +89,7 @@ for i=1:N
     
     time = h*i;
     tic;
-    [A.z(:,i,index),f,J,Mu,status] = pathmcp(Z,l,u,fun);
+    [A.z(:,i,index),~,~,~,status] = pathmcp(Z,l,u,fun);
     time_NCP = toc;
     if status == 1 
         A.time_NCP(i) = time_NCP;
@@ -102,7 +102,7 @@ for i=1:N
         j = j+1;
         Z_new = change_initial_guess(A,Z);
         tic
-        [A.z(:,i,index),f,J,Mu,status] = pathmcp(Z_new,l,u,fun);
+        [A.z(:,i,index),~,~,~,status] = pathmcp(Z_new,l,u,fun);
         time_NCP = toc;
         if status == 1 
             A.time_NCP(i) = time_NCP;
@@ -119,7 +119,7 @@ for i=1:N
               
            
             tic
-            [A.z(:,i,index),f,J,Mu,status] = pathmcp(Z_new,l,u,fun);
+            [A.z(:,i,index),~,~,~,status] = pathmcp(Z_new,l,u,fun);
             time_NCP = toc;
             if status == 1 
                 A.time_NCP(i) = time_NCP;
