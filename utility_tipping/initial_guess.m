@@ -36,11 +36,11 @@ q_z = A.initial_q(3)*unit;
     if A.shape == 'geckod_shape'
         len = A.dim(1)*unit;
         heg = A.dim(3)*unit;
-        ECP = [q_x;q_y-len/2;a_z;q_x;q_y-len/2;a_z];
+        ECP = [q_x-len/2;q_y;a_z;q_x-len/2;q_y;a_z];
     elseif A.shape == 'cuboid_shape'
         len = A.dim(1)*unit;
         heg = A.dim(3)*unit;
-        ECP = [q_x;q_y-len/2;a_z;q_x;q_y-len/2;a_z];
+        ECP = [q_x-len/2;q_y;a_z;q_x-len/2;q_y;a_z];
     elseif  A.shape == 'spiked_shape'
         len1 = A.dim(1)*unit;
         heg = A.dim(5)*unit;
@@ -77,36 +77,22 @@ q_z = A.initial_q(3)*unit;
         A.l(16:24,1) = 0;
         A.u(1:24,1) = infty;
         La =[0;0;0;0;1;0;0]; %% assuming planar contact
-        A.fun = 'mcp_funjac_single_convex_contact_patch_microrobot';
-        A.check = @mcp_funjac_single_convex_contact_patch_microrobot;
-    elseif (A.shape == 'geckod_shape')
-        A.l(1:15,1) = -infty;
-        A.l(16:24,1) = 0;
-        A.u(1:24,1) = infty;
-        La =[0;0;0;0;1;0;0]; %% assuming planar contact
-        A.fun = 'mcp_funjac_single_convex_contact_patch_microrobot';
-        A.check = @mcp_funjac_single_convex_contact_patch_microrobot;
-    elseif (A.shape == 'curved_shape')
-        A.l(1:15,1) = -infty;
-        A.l(16:24,1) = 0;
-        A.u(1:24,1) = infty;
-        La =[1;0;0;0;0;0;0]; %% assuming planar contact
-        A.fun = 'mcp_funjac_single_convex_contact_patch_microrobot_curved_shape';
-        A.check = @mcp_funjac_single_convex_contact_patch_microrobot_curved_shape;
+        A.fun = 'mcp_funjac_microrobot_tipping';
+        A.check = @mcp_funjac_microrobot_tipping;
     elseif A.shape == 'spiked_shape'
         A.l(1:15,1) = -infty;
         A.l(16:26,1) = 0;
         A.u(1:26,1) = infty;
         La =[0;1;0;0;0;0;0;0;0]; %% assuming planar contact
-        A.fun = 'mcp_funjac_single_convex_contact_patch_microrobot_spiked_shape';
-        A.check = @mcp_funjac_single_convex_contact_patch_microrobot_spiked_shape;
+        A.fun = 'mcp_funjac_microrobot_spiked_shape_tipping';
+        A.check = @mcp_funjac_microrobot_spiked_shape_tipping;
     elseif A.shape == 'spiked_ended'
         A.l(1:15,1) = -infty;
         A.l(16:28,1) = 0;
         A.u(1:28,1) = infty;
         La =[0;0;0;0;0;0;0;0;1;0;0]; %% assuming planar contact
-        A.fun = 'mcp_funjac_single_convex_contact_patch_microrobot_spiked_end';
-        A.check = @mcp_funjac_single_convex_contact_patch_microrobot_spiked_end;
+        A.fun = 'mcp_funjac_microrobot_spiked_end_tipping';
+        A.check = @mcp_funjac_microrobot_spiked_end_tipping;
     end
     A.Z = [nu;ECP;Con_wrench;sig;La;p_n]; 
     

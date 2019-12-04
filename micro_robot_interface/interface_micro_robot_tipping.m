@@ -3,7 +3,7 @@ clear all
 cd('..');
 addpath('micro_robot_interface');
 addpath('visualize');
-addpath('utility');
+addpath('utility_tipping');
 
 addpath('funjac/single_convex_contact_patches');
 addpath('pathmexmaci64');
@@ -11,9 +11,9 @@ addpath('pathmexmaci64');
 cd('micro_robot_interface')
 A = struct();
 
-A.shape ='cuboid_shape';
+A.shape ='spiked_ended';
 if A.shape == 'cuboid_shape'
-    A.dim=[800e-6 400e-6 100e-6]; %(m) length width height
+    A.dim=[800e-6 100e-6 600e-6]; %(m) length width height
     A.density = 2.1688e3; %kg/m^3
     
 elseif A.shape == 'spiked_shape'
@@ -64,8 +64,8 @@ A.fqn = 5; %Hz from 0Hz to 15 Hz
 
 
 %% geometary of the inclined surface
-A.theta = 0;
-%A.theta = (45/180)*pi; % inclined angle
+%A.theta = 0;
+A.theta = (30/180)*pi; % inclined angle
 
 
 %% initial state
@@ -77,7 +77,7 @@ elseif A.shape == 'spiked_shape'
 elseif A.shape == 'spiked_ended'
      H = A.dim(3)+2*A.dim(4);
 end
-A.initial_q = [0;0;H/(2*cos(A.theta ));cos((A.theta +pi)/2);-sin((A.theta+pi)/2);0;0];
+A.initial_q = [0;0;H/2;cos(pi/2);-sin(pi/2);0;0];
  
 A.initial_v = [0;0;0;0;0;0];  %m/s => [v_x,v_y,v_z,w_x,w_y,w_z]
 
