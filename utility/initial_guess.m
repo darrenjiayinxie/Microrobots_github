@@ -97,9 +97,9 @@ q_z = A.initial_q(3)*unit;
         A.l(1:15,1) = -infty;
         A.l(16:26,1) = 0;
         A.u(1:26,1) = infty;
-        La =[0;1;0;0;0;0;0;0;0]; %% assuming planar contact
-        A.fun = 'mcp_funjac_single_convex_contact_patch_microrobot_spiked_shape';
-        A.check = @mcp_funjac_single_convex_contact_patch_microrobot_spiked_shape;
+        La =[0;0;0;0;0;0;0;0;0]; %% assuming planar contact
+        A.fun = 'mcp_funjac_microrobot_spiked_shape_m_err';
+        A.check = @mcp_funjac_microrobot_spiked_shape_m_err;
     elseif A.shape == 'spiked_ended'
         A.l(1:15,1) = -infty;
         A.l(16:28,1) = 0;

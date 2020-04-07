@@ -41,7 +41,9 @@ elseif A.shape == 'spiked_shape'
     wid2 = A.dim(4)*unit;
     heg = A.dim(5)*unit;
     
-
+    global derr_1 derr_2;
+    derr_1 = A.err(1);
+    derr_2 = A.err(2);
 elseif A.shape == 'spiked_ended'
     len1 = A.dim(1)*unit;
     len2 = A.dim(2)*unit;
@@ -76,6 +78,9 @@ global p_x p_y p_z p_xt p_yt p_zt;
 
 global fqn time;
 fqn = A.fqn;
+
+
+
 %% initial configuration and state
 % q_old - position and orientation vector at l, q_old=[q_xo;q_yo;q_zo;q0_o;q1_o;q2_o;q3_o]
 global q_old;

@@ -311,7 +311,7 @@ figure (1);
         zlabel('z (mm)');
     end
     hold on
-    view([-1,-1,0.5]);
+    view([1,1,0.5]);
     hold off
     frame = getframe(gcf);
     writeVideo(v,frame);

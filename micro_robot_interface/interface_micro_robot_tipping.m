@@ -11,17 +11,17 @@ addpath('pathmexmaci64');
 cd('micro_robot_interface')
 A = struct();
 
-A.shape ='spiked_ended';
+A.shape ='spiked_shape';
 if A.shape == 'cuboid_shape'
     A.dim=[800e-6 100e-6 600e-6]; %(m) length width height
     A.density = 2.1688e3; %kg/m^3
     
 elseif A.shape == 'spiked_shape'
-    A.dim=[800e-6 200e-6 650e-6 150e-6 300e-6]; %(m) len1 len2 wid1 wid2 heg
+    A.dim=[800e-6 100e-6 450e-6 150e-6 400e-6]; %(m) len1 len2 wid1 wid2 heg
     A.density = 2.1688e3; %kg/m^3
     
 elseif A.shape == 'spiked_ended'
-    A.dim=[800e-6 100e-6 150e-6 125e-6 400e-6]; %(m) len1 len2 wid1 wid2 heg
+    A.dim=[800e-6 100e-6 150e-6 125e-6 100e-6]; %(m) len1 len2 wid1 wid2 heg
     A.density = 2.1688e3; %kg/m^3
 
 end
@@ -36,7 +36,7 @@ A.h = 5e-4; %(s)
 %% friction parameter
 A.ellipsoid = [1 1 0.1]; % the choice of e_r (m) depends on the CM
 
-A.material = 'paper';
+A.material = 'alumi';
 if A.material == 'paper'
     A.cof = 0.3; % coefficient of friction
     A.van_constant = 3.7148; %N/m^2
@@ -53,19 +53,19 @@ end
 A.M_r = 15000;% A/m old robot
 %A.M_r = 51835;% A/m new robot
 %A.phi = (27/180)*pi; % rad offset angle of old robot
-A.phi = (0/180)*pi; % rad offset angle of new robot
+A.phi = (10/180)*pi; % rad offset angle of new robot
 
 A.B =20e-3; % T
 
 
 
 % the frequency of the ratational magnetic field
-A.fqn = 5; %Hz from 0Hz to 15 Hz
+A.fqn = 0; %Hz from 0Hz to 15 Hz
 
 
 %% geometary of the inclined surface
 %A.theta = 0;
-A.theta = (30/180)*pi; % inclined angle
+A.theta = (60/180)*pi; % inclined angle
 
 
 %% initial state
