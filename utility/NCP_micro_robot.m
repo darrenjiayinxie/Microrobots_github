@@ -26,6 +26,13 @@ m = A.mass*unit_mass;
 g = A.gravity*unit;
 
 global len wid len1 len2 wid1 wid2 heg  I_xx I_yy I_zz Height phi theta;
+
+
+global u_x u_y u_z;
+u_x = A.u_axis(1);
+u_y = A.u_axis(2);
+u_z = A.u_axis(3);
+
 if (A.shape == 'cuboid_shape')
     len = A.dim(1)*unit;  % in fixed body frame's y direction
     wid = A.dim(2)*unit;  % in fixed body frame's x direction
